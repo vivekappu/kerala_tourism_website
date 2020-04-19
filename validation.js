@@ -11,6 +11,9 @@ const nameRegex=/^[a-zA-Z]+$/;
 const emailRegex=/^[^@]+@[^@.]+\.[a-z]+$/i;
 const indianphoneRegex=/^\d{3}\d{3}\d{4}$|^\d{3}[.]\d{3}[.]\d{4}$|^\d{3}[-]\d{3}[-]\d{4}$/;
 const passwordRegex=/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
+var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
 var strength = {
     0: "Poor",
     1: "good",
@@ -113,13 +116,13 @@ emailinput.addEventListener("input",createListener(Validation,emailRegex));
 passwordinput.addEventListener("input",createListener(Validation,passwordRegex));
 phonenumber.addEventListener("input",createListener(Validation,indianphoneRegex));
 function getStrength(text){
-    if(/[0-9a-zA-Z@?!&$%#*]+/.test(text)){
+    if(strongRegex.test(text)){
         return 2;
     }
-    if(/[0-9a-zA-Z]+/.test(text)){
+    else if(mediumRegex.test(text)){
         return 1;
     }
-   if( /[0-9]+/.test(text)){
+    else{
        return 0;
    }
    

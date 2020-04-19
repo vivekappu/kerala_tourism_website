@@ -87,7 +87,7 @@ function hideFieldEmptyMessage() {
     Show(false, repeatpasswordfill);
 }
 function checkIfInputEmpty(event) {
-       
+    var Match =passwordMatch(passwordinput,repeatpassword) ? 1 :0;
     
     switch (0) {
         case nameinput.value.length: onEmpty(nameinput, "Please Enter your name");
@@ -99,6 +99,8 @@ function checkIfInputEmpty(event) {
             break;
         case repeatpassword.value.length: onEmpty(repeatpassword, "Please  reenter your password");
             break;
+        case Match:onEmpty(repeatpassword,"Both Passwords must match");console.log("here");
+             break;
         default: isValid=false;
 
     }  

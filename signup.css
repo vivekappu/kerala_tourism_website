@@ -75,11 +75,10 @@ form{
      background-color: #FF9494;
      
  }
-footer{
-    position:absolute;
-    width:100%;
-    bottom:0;
-}
+ form{
+     margin-bottom:40px;
+ }
+
 #password-strength-text{
     
     font-size: 1.3em;

@@ -94,7 +94,8 @@ function checkIfInputEmpty(event) {
             break;
         case emailinput.value.length: onEmpty(emailinput, "Please Enter your Email Id");
             break;
-        case phonenumber.value.length: onEmpty(phonenumber, "Please Enter your Phone number")
+        case phonenumber.value.length: onEmpty(phonenumber, "Please Enter your Phone number");
+            break;
         case passwordinput.value.length: onEmpty(passwordinput, "Please Enter your Password ");
             break;
         case repeatpassword.value.length: onEmpty(repeatpassword, "Please  reenter your password");

@@ -13,7 +13,7 @@ var repeatpasswordfill = document.querySelector("#repeatpasswordfill");
 var text = document.getElementById('password-strength-text');
 const nameRegex = /^[a-zA-Z]+$/;
 const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
-const indianphoneRegex = /^\d{3}\d{3}\d{4}$|^\d{3}[.]\d{3}[.]\d{4}$|^\d{3}[-]\d{3}[-]\d{4}$/;
+const indianphoneRegex = /^\d{3}\d{3}\d{4}$|^\d{3}[.]\d{3}[.]\d{4}$|^\d{3}[-]\d{3}[-]\d{4}$|^\d{3}[ ]\d{3}[ ]\d{4}/;
 const passwordRegex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
 var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");

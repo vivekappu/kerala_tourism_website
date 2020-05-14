@@ -1,0 +1,30 @@
+
+.tooltip {
+    border-radius: 5px;
+    display: none;
+    font-size: 1.3em;
+    text-align: left;
+    position: absolute;
+    background: #2F558E;
+    left: 105%;
+    top:-7px;
+    width: 70%;
+    padding: 7px 10px;
+    color: #fff;
+    border:1px solid white;
+    opacity: 1;
+  }
+  .tooltip:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-right-color: #2F558E;
+    border-width: 8px;
+    margin-top: -8px;
+  }

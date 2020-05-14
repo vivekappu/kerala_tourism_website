@@ -4,7 +4,7 @@ let loginbtn=document.getElementById('btn-login');
 let emailtooltip=document.querySelector('.emailtooltip');
 let passwordtooltip=document.querySelector('.passwordtooltip');
 const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
-
+let isValid=true;
 function Show(show, Element) {
     if (show) {
         Element.style.display = "inherit";
@@ -38,8 +38,21 @@ password.addEventListener("input",()=>{
 loginbtn.addEventListener("click",()=>{
     if(isEmpty(email)){
         Show(true,emailtooltip);
+       
     }
     if(isEmpty(password)){
         Show(true,passwordtooltip)
+       
+    }
+    if(isEmpty(password)||isEmpty(email)){
+        isValid=false;
+    }
+    else{
+        isValid=true;
     }
 });
+
+function validate(){
+    return isValid;
+    console.log(isValid);
+  }

@@ -1,3 +1,15 @@
+// Requirements:
+// 1. Email Validation
+// 2. Phone number Validation
+// 2.1.Accept numbers only
+// 2.2.Should contain 10 numbers only
+// 2.3.Should accept additional 3 formats: XXX - XXX - XXXX, XXX.XXX.XXXX, XXX XXX XXXX
+// 3. Password Validation:
+// 3.1.Minimum 8 characters, at least one uppercase and one lower case, must contain at least one number
+// 3.2.Indicate the strength(strong, medium, poor) of the password using different colors(green, orange, red)
+
+
+
 const nameinput = document.querySelector("#name");
 const emailinput = document.querySelector("#email");
 const passwordinput = document.querySelector("#password");
@@ -11,18 +23,17 @@ var passwordfill = document.querySelector("#passwordfill");
 var phonenumberfill = document.querySelector("#phonenumberfill");
 var repeatpasswordfill = document.querySelector("#repeatpasswordfill");
 var text = document.getElementById('password-strength-text');
-const nameRegex = /^[a-zA-Z]+$/;
+const nameRegex = /^[a-zA-z]*]$/;
 const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
 const indianphoneRegex = /^\d{3}\d{3}\d{4}$|^\d{3}[.]\d{3}[.]\d{4}$|^\d{3}[-]\d{3}[-]\d{4}$|^\d{3}[ ]\d{3}[ ]\d{4}/;
-const passwordRegex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
+const passwordRegex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})/;
 var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-var isValid=true;
+var isValid=false;
 var strength = {
     0: "Poor",
     1: "good",
     2: "Strong"
-
 }
 var color = {
     0: "red",
@@ -56,6 +67,7 @@ function createListener(validator, regex) {
                 repeatpassword.value = "";
             }
         }
+       
     }
 }
 function passwordMatch(text, regex) {
@@ -86,10 +98,14 @@ function hideFieldEmptyMessage() {
     Show(false, phonenumberfill);
     Show(false, repeatpasswordfill);
 }
-function checkIfInputEmpty(event) {
-    var Match =passwordMatch(passwordinput,repeatpassword) ? 1 :0;
+function checkIfInputEmptyandValid(event) {
+    var password_Match =passwordMatch(passwordinput.value,repeatpassword.value) ? 1 :0;
+    var validEmail=Validation(emailinput.value,emailRegex)?1:0;
+    var validPhone=Validation(phonenumber.value,indianphoneRegex)?1:0;
+    var validpassword=Validation(passwordinput.value,passwordRegex)?1:0;
     
     switch (0) {
+        
         case nameinput.value.length: onEmpty(nameinput, "Please Enter your name");
             break;
         case emailinput.value.length: onEmpty(emailinput, "Please Enter your Email Id");
@@ -100,13 +116,20 @@ function checkIfInputEmpty(event) {
             break;
         case repeatpassword.value.length: onEmpty(repeatpassword, "Please  reenter your password");
             break;
-        case Match:onEmpty(repeatpassword,"Both Passwords must match");console.log("here");
+        case password_Match:onEmpty(repeatpassword,"Both Passwords must match");console.log("here");
              break;
-        default: isValid=false;
+        case validEmail:isValid=false;
+        break;
+        case validPhone:isValid=false;
+        break;
+        case validpassword:isValid=false;
+        break;
+        default: isValid=true;
 
     }  
     
 }
+
 
 function getStrength(text) {
     if (strongRegex.test(text)) {
@@ -122,7 +145,7 @@ function getStrength(text) {
 
 }
 
-nameinput.addEventListener("input", createListener(Validation, nameRegex));
+
 emailinput.addEventListener("input", createListener(Validation, emailRegex));
 
 passwordinput.addEventListener("input", createListener(Validation, passwordRegex));
@@ -130,8 +153,6 @@ phonenumber.addEventListener("input", createListener(Validation, indianphoneRege
 passwordinput.addEventListener('input', function () {
     var val = passwordinput.value;
     var result = getStrength(val);
-
-
     // Update the text indicator
     if (val !== "") {
         text.innerHTML = "Strength: " + strength[result];
@@ -142,9 +163,9 @@ passwordinput.addEventListener('input', function () {
 
 });
 
-submitbutton.addEventListener("click", checkIfInputEmpty);
-function validate(){
-  return !isValid;
-}
+submitbutton.addEventListener("click", checkIfInputEmptyandValid);
 
+function validate(){
+  return isValid;
+}
 

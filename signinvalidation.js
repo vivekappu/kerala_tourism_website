@@ -3,7 +3,7 @@ let password=document.getElementById('login-password');
 let loginbtn=document.getElementById('btn-login');
 let emailtooltip=document.querySelector('.emailtooltip');
 let passwordtooltip=document.querySelector('.passwordtooltip');
-const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let isValid=true;
 function Show(show, Element) {
     if (show) {

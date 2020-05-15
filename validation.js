@@ -24,9 +24,9 @@ var phonenumberfill = document.querySelector("#phonenumberfill");
 var repeatpasswordfill = document.querySelector("#repeatpasswordfill");
 var text = document.getElementById('password-strength-text');
 const nameRegex = /^[a-zA-z]*]$/;
-const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const indianphoneRegex = /^\d{3}\d{3}\d{4}$|^\d{3}[.]\d{3}[.]\d{4}$|^\d{3}[-]\d{3}[-]\d{4}$|^\d{3}[ ]\d{3}[ ]\d{4}/;
-const passwordRegex = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})/;
+const passwordRegex = /(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/;
 var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 var isValid=false;
@@ -81,7 +81,7 @@ function isEmpty(input) {
 function onEmpty(inputElement, text) {
     Show(true, alertbox);
     alertbox.textContent = text;
-    setTimeout(() => { Show(false, alertbox); inputElement.focus() }, 500);
+    setTimeout(() => { Show(false, alertbox); inputElement.focus() }, 1300);
     showFieldEmptyMessage();
 }
 function showFieldEmptyMessage() {
